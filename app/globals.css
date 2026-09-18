@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Semantic Colors */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-card-bg: var(--card-bg);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border-color: var(--border-color);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  /* Legacy & Functional */
+  --color-success-100: #10B981;
+  --color-destructive-100: #EF4444;
+  --font-mona-sans: "Mona Sans", sans-serif;
+}
+
+:root {
+  /* LIGHT MODE - Crisp, Clean, SaaS Aesthetic */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --card-bg: #FFFFFF;
+  
+  --text-primary: #0F172A;   /* Slate 900 */
+  --text-secondary: #475569; /* Slate 600 */
+  
+  --border-color: #E2E8F0;   /* Slate 200 (Neutral border in Light) */
+  
+  --accent: #10B981;        /* Emerald 500 */
+  --accent-soft: #ECFDF5;   /* Emerald 50 */
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  --radius: 1.5rem;
+}
+
+.dark {
+  /* DARK MODE - Deep, Sophisticated, High-Tech */
+  --bg-primary: #000000;     /* Pure Black */
+  --bg-secondary: #0F172A;   /* Slate 900 */
+  --card-bg: #1E293B;       /* Slate 800 (or slightly more glass) */
+  --card-bg: rgba(30, 41, 59, 0.4);
+  
+  --text-primary: #F8FAFC;   /* Slate 50 */
+  --text-secondary: #94A3B8; /* Slate 400 */
+  
+  --border-color: rgba(255, 255, 255, 0.1); /* Subtle white in Dark */
+  
+  --accent: #10B981;        /* Emerald 500 */
+  --accent-soft: rgba(16, 185, 129, 0.1);
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.8);
+}
+
+@layer base {
+  * {
+    @apply border-border-color;
+  }
+  body {
+    @apply bg-bg-primary text-text-primary transition-colors duration-300 antialiased;
+  }
+}
+
+@layer components {
+  /* Semantic Utility Classes */
+  .glass-card {
+    @apply bg-card-bg border border-border-color rounded-[2.5rem] transition-all duration-300;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .dark .glass-card {
+    @apply backdrop-blur-xl;
+  }
+
+  .text-title {
+    @apply text-text-primary font-black tracking-tighter;
+  }
+  
+  .text-body {
+    @apply text-text-secondary font-medium leading-relaxed;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-bg-secondary;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-border-color rounded-full hover:bg-accent/50 transition-colors;
+}
